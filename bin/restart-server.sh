@@ -21,7 +21,7 @@ for j in ../lib/*.jar; do
 done
 
 SEARCH_VER=0
-#DEFAULT_OPTS="-server -Xms300M -Xmx100M -Xss128k"
+#DEFAULT_OPTS="-server -Xms300M -Xmx300M -Xss128k"
 DEFAULT_OPTS="$DEFAULT_OPTS -Dcom.sun.management.jmxremote.port=89${SEARCH_VER}6" 
 DEFAULT_OPTS="$DEFAULT_OPTS -Dcom.sun.management.jmxremote.authenticate=false"
 DEFAULT_OPTS="$DEFAULT_OPTS -Dcom.sun.management.jmxremote.ssl=false"
