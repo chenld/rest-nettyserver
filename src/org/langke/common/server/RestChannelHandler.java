@@ -15,6 +15,7 @@ import org.jboss.netty.handler.codec.http.HttpRequest;
 import org.jboss.netty.handler.codec.http.HttpResponseStatus;
 import org.jboss.netty.handler.codec.http.HttpVersion;
 import org.langke.common.Config;
+import org.langke.common.CostTime;
 import org.langke.common.server.resp.ErrorResp;
 import org.langke.common.server.resp.Resp;
 import org.langke.util.logging.ESLogger;
@@ -36,6 +37,8 @@ public class RestChannelHandler extends SimpleChannelHandler {
 	}
 
 	public void messageReceived(ChannelHandlerContext ctx, final MessageEvent me) throws Exception {
+		CostTime cost = new CostTime();
+		cost.start();
 		final HttpRequest httpRequest = (HttpRequest) me.getMessage();
 		NettyHttpRequest request = new NettyHttpRequest(httpRequest);
 		Channel channel = me.getChannel();
@@ -52,6 +55,8 @@ public class RestChannelHandler extends SimpleChannelHandler {
 			} catch (Exception e) {
 				response = new ErrorResp(e);
 			}finally{
+				response.getRespData().setTime(cost.cost());
+				cost = null;
 				sendResponse(request, response, httpRequest, channel);
 			}
 		}

@@ -9,6 +9,10 @@
 		 http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd   
 		 http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 		 http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd">
-	 
+	 <bean id="brekeleyDB" class="org.langke.common.bdb.BrekeleyDBImpl" destroy-method="close"  scope="singleton">
+	 	<constructor-arg type="String"  value="bdb"></constructor-arg>
+	 	<constructor-arg type="String"  value="bdb_test"></constructor-arg>
+	 	<constructor-arg type="Class"  value="java.lang.String"></constructor-arg>
+	 </bean>
 </beans>
 
